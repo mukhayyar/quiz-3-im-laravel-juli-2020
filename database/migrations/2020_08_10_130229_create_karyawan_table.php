@@ -16,7 +16,7 @@ class CreateKaryawanTable extends Migration
         Schema::create('karyawan', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->char('nama',50);
-            $table->char('jabatan',50);
+            $table->enum('jabatan',['manager','staff']);
             $table->timestamps();
         });
     }
