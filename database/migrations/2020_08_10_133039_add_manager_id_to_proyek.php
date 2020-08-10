@@ -15,7 +15,7 @@ class AddManagerIdToProyek extends Migration
     {
         Schema::table('proyek', function (Blueprint $table) {
             $table->unsignedBigInteger('manager_id');
-            $table->foreign('manager_id')->references('id')->on('karyawan');
+            $table->foreign('manager_id')->references('id')->on('karyawan')->onDelete('cascade');
         });
     }
 

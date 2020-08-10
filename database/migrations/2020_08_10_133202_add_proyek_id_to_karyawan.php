@@ -15,7 +15,7 @@ class AddProyekIdToKaryawan extends Migration
     {
         Schema::table('karyawan', function (Blueprint $table) {
             $table->unsignedBigInteger('proyek_id')->nullable();
-            $table->foreign('proyek_id')->references('id')->on('proyek');
+            $table->foreign('proyek_id')->references('id')->on('proyek')->onDelete('cascade');
         });
     }
 

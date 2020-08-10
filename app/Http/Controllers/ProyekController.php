@@ -41,7 +41,7 @@ class ProyekController extends Controller
     {
         $proyek = new Proyek;
         $proyek->nama_proyek = $request->nama_proyek;
-        $proyek->deskiprsi_proyek = $request->deskiprsi_proyek;
+        $proyek->deskripsi_proyek = $request->deskripsi_proyek;
         $proyek->tanggal_dimulai = $request->tanggal_dimulai;
         $proyek->tanggal_deadline = $request->tanggal_deadline;
         $proyek->manager_id = $request->manager_id;
@@ -62,7 +62,9 @@ class ProyekController extends Controller
      */
     public function show(Proyek $proyek)
     {
-        return view('show_proyek', compact('proyek'));
+        $karyawan = DB::table('karyawan')->where('proyek_id',$proyek->id)->get();
+        // dd($karyawan);
+        return view('show_proyek', compact('proyek','karyawan'));
     }
 
     /**
@@ -86,7 +88,7 @@ class ProyekController extends Controller
     public function update(Request $request, Proyek $proyek)
     {
         $proyek->nama_proyek = $request->nama_proyek;
-        $proyek->deskiprsi_proyek = $request->deskiprsi_proyek;
+        $proyek->deskripsi_proyek = $request->deskripsi_proyek;
         $proyek->tanggal_dimulai = $request->tanggal_dimulai;
         $proyek->tanggal_deadline = $request->tanggal_deadline;
         $proyek->update();
@@ -103,6 +105,21 @@ class ProyekController extends Controller
     public function destroy(Proyek $proyek)
     {
         $proyek->delete();
+
+        return redirect('/proyek');
+    }
+    public function daftarStaff(Proyek $proyek)
+    {
+        $karyawan = DB::table('karyawan')->where([['jabatan', 'staff'],['proyek_id',null]])->orderBy('nama')->get();
+        // dd($manager);
+        return view('tambah_karyawan',compact('karyawan','proyek'));
+    }
+
+    public function postStaff(Request $request, Proyek $proyek)
+    {
+        $karyawan = DB::table('karyawan')
+              ->where('id', $request->karyawan_id)
+              ->update(['proyek_id' => $proyek->id]);
 
         return redirect('/proyek');
     }

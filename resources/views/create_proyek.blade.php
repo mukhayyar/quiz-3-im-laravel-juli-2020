@@ -21,11 +21,13 @@
     @endforeach
     </select>
   </div>
+  <div class="form-group">
   <label for="exampleFormControlTextarea1">Tanggal Dimulai</label>
     <input type="date" placeholder="yyyy-mm-dd" class="form-control" name="tanggal_dimulai"></input>
   </div>
+  <div class="form-group">
   <label for="exampleFormControlTextarea1">Tanggal Deadline</label>
-    <input type="date" placeholder="yyyy-mm-dd" class="form-control" name="tanggal_dimulai"></input>
+    <input type="date" placeholder="yyyy-mm-dd" class="form-control" name="tanggal_deadline"></input>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

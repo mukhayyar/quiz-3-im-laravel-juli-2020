@@ -9,7 +9,12 @@
     <p class="card-text">{{$proyek->tanggal_dimulai}}</p>
     <p class="card-text">{{$proyek->tanggal_deadline}}</p>
     <p class="card-text">{{$proyek->deskripsi_proyek}}</p>
-    <a href="/pertanyaan" class="btn btn-primary">Go somewhere</a>
+    <ul>
+    @foreach($karyawan as $man)
+        <li>{{$man->nama}} | {{$man->jabatan}}</li>
+    @endforeach
+    </ul>
+    <a href="/proyek" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
 
